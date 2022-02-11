@@ -29,9 +29,10 @@ export const data = [
 
 export const sliderSettings = {
 	arrows: false,
-	slidesToShow: 3,
+	slidesToShow: 3.1,
 	focusOnselect: false,
 	accessability: false,
+	centerPadding: "300px",
 	responsive: [
 		{
 			breakpoint: 1280,
