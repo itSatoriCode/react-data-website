@@ -72,10 +72,10 @@ export const NavMenu = styled.ul`
 		padding-top: 30%;
 		top: 0;
 		left: 0;
-		opacity: ${({ show }) => (show ? 1 : 0)};
+		opacity: ${({ show }) => (show ? 0.99 : 0)};
 		visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
 		transform: translateY(${({ show }) => (show ? '0' : '-10px')});
-		transition: opacity 0.5s ease;
+		transition: all 0.5s ease;
 		background-color: #071c2f;
 	}
 

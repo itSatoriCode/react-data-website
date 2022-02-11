@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Section } from '../../globalStyles';
 import {
 	FeatureText,
@@ -10,6 +10,8 @@ import {
 	FeatureTextWrapper,
 } from './FeaturesStyles';
 import { featuresData } from '../../data/FeaturesData';
+import { useInView } from 'react-intersection-observer';
+import { useAnimation } from 'framer-motion';
 
 const Features = () => {
 	const initial = {
@@ -21,8 +23,17 @@ const Features = () => {
 		opacity: 1,
 	};
 
+	const { ref, inView } = useInView({ threshold: 0.6 });
+	const animation = useAnimation();
+
+	useEffect(() => {
+		if (inView) {
+			animation.start(animate);
+		}
+	}, [animation, inView]);
+
 	return (
-		<Section smPadding="50px 10px" position="relative" inverse id="about">
+		<Section smPadding="50px 10px" position="relative" inverse id="about" ref={ref}>
 			<Container>
 				<FeatureTextWrapper>
 					<FeatureTitle>What We Offer</FeatureTitle>
@@ -31,7 +42,7 @@ const Features = () => {
 					{featuresData.map((el, index) => (
 						<FeatureColumn
 							initial={initial}
-							animate={animate}
+							animate={animation}
 							transition={{ duration: 0.5 + index * 0.1 }}
 							key={index}
 						>
